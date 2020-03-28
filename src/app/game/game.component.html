@@ -1,0 +1,66 @@
+<div class="card" style="width:900px;">
+    <div class="card-header">
+        {{pageTitle}}
+    </div>
+
+    <div class="card-body">
+        <form novalidate (ngSubmit)="saveGame()" [formGroup]="gameForm" >
+
+            <div class="group-gap">
+                <h6 class="mb-3" for="numberOfPlayers">Number of players: </h6>
+                <div class="d-block my-3">
+
+                    <div class="custom-control custom-radio">
+                        <input id="two" type="radio" class="custom-control-input" value="2" name="numberOfPlayers"
+                            formControlName="numberOfPlayers" ng-model="numberOfPlayers" (change)="handleClick()" />
+                        <label class="custom-control-label" for="two">Two</label>
+                    </div>
+
+                    <div class="custom-control custom-radio">
+                        <input id="three" type="radio" class="custom-control-input" value="3" name="numberOfPlayers"
+                            formControlName="numberOfPlayers" ng-model="numberOfPlayers" (change)="handleClick()">
+                        <label class="custom-control-label" for="three">Three</label>
+                    </div>
+
+                    <div class="custom-control custom-radio">
+                        <input id="four" type="radio" class="custom-control-input" value="4" name="numberOfPlayers"
+                            formControlName="numberOfPlayers" ng-model="numberOfPlayers" (change)="handleClick()">
+                        <label class="custom-control-label" for="four">Four</label>
+                    </div>
+
+                </div>
+            </div>
+
+            <div formArrayName="names">
+                <div *ngFor="let name of names.controls; let i=index">
+                    <div *ngIf="i<numberOfPlayers" class="form-group row mb-2">
+                        <label class="col-md-2 col-form-label" [attr.for]="i">Player No{{i + 1}} name:</label>
+
+                        <div class="col-md-8">
+                            <input class="form-control" [id]="i" type="text" placeholder="Name" [formControlName]="i" />
+                        </div>
+                        <button class="col-md-1 btn btn-outline-warning btn-sm" type="button"
+                            title="Delete this player's name" (click)="deleteName(i)">Delete Tag
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 mb-2">
+                    <button class="btn btn-outline-secondary btn-sm" type="button" title="Add name for player"
+                        (click)="addName()">Add player name
+                    </button>
+                </div>
+            </div>
+            <div class="form-group row mb-2">
+                <div class="offset-md-2 col-md-4">
+                    <button class="btn btn-primary mr-3" style="width:120px;" type="submit">
+                        START GAME!
+                    </button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>

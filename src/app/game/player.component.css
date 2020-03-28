@@ -1,0 +1,204 @@
+.parent {
+    position: relative;
+    height: 640px;
+}
+
+.player1 {
+    position: absolute;
+    top: 20px;
+    left: 5px;
+}
+
+.player2 {
+    position: absolute;
+    top: 20px;
+    right: 5px;
+}
+
+.player3 {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+}
+
+.player4 {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+.game-board{ 
+    position: absolute;
+    top: 20px;
+    left: 250px;
+    display: grid;
+    grid-template-columns: 5px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 5px; 
+    grid-template-rows: 5px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 5px; 
+    justify-content: center;
+   }
+
+   .red-player{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color:transparent;
+    border:8px solid rgb(244, 78, 66);
+    border-radius:20px;
+    grid-row:2/3;
+    grid-column:3/4;
+    }
+
+    .triangle-blue{
+        position: absolute;
+        top: 6px;
+        left: 5px;
+        border-top:
+        18px solid transparent;
+        border-bottom:
+        18px solid transparent;
+          border-left:
+          30px solid rgb(13, 47, 99);
+          width: 20px;
+          height: 20px;
+      }
+
+    .blue-pawn {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        background: cornflowerblue;
+        border: 3px solid #000;
+    }
+
+    ._blue-pawn {
+      background-image: url("/Users/ibrica/Documents/Angular/LUDO-angular/src/assets/images/ludo-welcome.jpg");
+        background-repeat: no-repeat;
+
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 35px;
+        height: 35px;
+    }
+
+   .blue-home {
+    position: relative;
+    background-color: rgb(13, 47, 99);
+    border: 2px solid black;
+    border-radius: 25px;
+    }
+
+    .triangle-red{
+        position: absolute;
+        top: 8px;
+        left: 5px;
+        border-left:
+          18px solid transparent;
+        border-right:
+          18px solid transparent;
+          border-top:
+          30px solid #bd082f;
+          width: 20px;
+          height: 20px;
+      }
+
+    .red-pawn {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        background: rgba(231, 91, 91, 0.829);
+        border: 3px solid #000;
+    }
+    
+    .red-home {
+    position: relative;
+    background-color: #bd082f;
+    border: 2px solid black;
+    border-radius: 25px;
+   }
+
+   .triangle-green{
+    position: absolute;
+    top: 6px;
+    left: 5px;
+    border-top:
+    18px solid transparent;
+    border-bottom:
+    18px solid transparent;
+      border-right:
+      30px solid green;
+      width: 20px;
+      height: 20px;
+  }
+
+   .green-pawn {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    background: rgba(91, 231, 103, 0.829);
+    border: 3px solid #000;
+}
+
+   .green-home {
+    position: relative;
+    background-color: green;
+    border: 2px solid black;
+    border-radius: 25px;
+   }
+
+   .triangle-yellow{
+    position: absolute;
+    top: 8px;
+    left: 5px;
+    border-left:
+      18px solid transparent;
+    border-right:
+      18px solid transparent;
+      border-bottom:
+      30px solid yellow;
+      width: 20px;
+      height: 20px;
+  }
+
+   .yellow-pawn {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    background: rgba(231, 229, 91, 0.829);
+    border: 3px solid #000;
+}
+
+   .yellow-home {
+    position: relative;
+    background-color: yellow;
+    border: 2px solid black;
+    border-radius: 25px;
+   }
+
+   .box {
+    position: relative;
+    background-color: #d9d9d9;
+    border: 2px solid black;
+   }
+
+   .wall{
+    background-color:white;
+  }
+
+  .wall-circle{
+    background-color:black;
+    
+  }
+

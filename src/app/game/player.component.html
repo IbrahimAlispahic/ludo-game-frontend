@@ -1,0 +1,1263 @@
+<div class="parent">
+
+    <div class="game-board">
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+
+        <div class="wall"></div>
+        <div class="blue-home">
+            <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf=game.players[0].figures[0].firstRoll
+                 (click)="play(1)" class="blue-pawn">
+            </button>
+        </div>
+        <div class="blue-home">
+            <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf=game.players[0].figures[1].firstRoll
+                class="blue-pawn" (click)="play(2)"></button>
+        </div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==8" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==38" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==28" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==18" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==9" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==39" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==29" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==19" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class="triangle-red"></div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="!figure.firstRoll && figure.score==0"
+                    class="red-pawn" (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==10" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==30" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==20" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="red-home">
+            <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf=game.players[1].figures[0].firstRoll
+                class="red-pawn" (click)="play(1)"> </button>
+        </div>
+        <div class="red-home">
+            <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf=game.players[1].figures[1].firstRoll
+                class="red-pawn" (click)="play(2)"></button>
+        </div>
+        <div class="wall"></div>
+
+        <div class="wall"></div>
+        <div class="blue-home">
+            <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf=game.players[0].figures[2].firstRoll
+                class="blue-pawn" (click)="play(3)"></button>
+        </div>
+        <div class="blue-home">
+            <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf=game.players[0].figures[3].firstRoll
+                class="blue-pawn" (click)="play(4)"></button>
+        </div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==7" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==37" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==27" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==17" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="red-home">
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==40" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+        </div>
+
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==11" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==1" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==31" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==21" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="red-home">
+            <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf=game.players[1].figures[2].firstRoll
+                class="red-pawn" (click)="play(3)"></button>
+        </div>
+        <div class="red-home">
+            <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf=game.players[1].figures[3].firstRoll
+                class="red-pawn" (click)="play(4)"></button>
+        </div>
+        <div class="wall"></div>
+
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==6" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==36" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==26" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==16" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="red-home">
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==41" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+        </div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==12" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==2" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==32" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==22" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==5" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==35" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==25" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==15" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="red-home">
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==42" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+        </div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==13" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==3" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==33" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==23" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+
+        <div class="wall"></div>
+        <div class="box">
+            <div class="triangle-blue"></div>
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="!figure.firstRoll && figure.score==0"
+                    class="blue-pawn" (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==30" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==20" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==10" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==1" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==31" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==21" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==11" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==2" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==32" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==22" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==12" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==3" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==33" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==23" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==13" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==4" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==34" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==24" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==14" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="red-home">
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==43" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+        </div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==14" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==4" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==34" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==24" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==15" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==5" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==35" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==25" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==16" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==6" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==36" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==26" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==17" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==7" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==37" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==27" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==18" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==8" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==38" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==28" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="wall"></div>
+
+        <div class="wall"></div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==39" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==29" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==19" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==9" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="blue-home">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==40" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+        </div>
+        <div class="blue-home">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==41" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+        </div>
+        <div class="blue-home">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==42" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+        </div>
+        <div class="blue-home">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==43" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+        </div>
+        <div class="wall"></div>
+        <div class="green-home">
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==43" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="green-home">
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==42" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="green-home">
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==41" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="green-home">
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==40" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==19" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==9" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==39" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==29" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==38" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==28" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==18" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==8" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==37" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==27" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==17" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==7" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==36" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==26" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==16" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==6" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==35" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==25" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==15" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==5" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==34" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==24" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==14" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==4" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="yellow-home">
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==43" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==24" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==14" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==4" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==34" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==23" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==13" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==3" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==33" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==22" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==12" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==2" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==32" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==21" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==11" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==1" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==31" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div class="triangle-green"></div>
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==20" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==10" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="!figure.firstRoll && figure.score==0"
+                        class="green-pawn" (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==30" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="wall"></div>
+
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==33" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==23" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==13" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==3" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="yellow-home">
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==42" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==25" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==15" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==5" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==35" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==32" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==22" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==12" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==2" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="yellow-home">
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==41" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==26" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==16" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==6" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==36" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+
+        <div class="wall"></div>
+        <div class="green-home">
+            <button *ngIf="game.numberOfPlayers>2 && game.players[2].figures[0].firstRoll" class="green-pawn"
+                (click)="play(1)"></button>
+        </div>
+        <div class="green-home">
+            <button *ngIf="game.numberOfPlayers>2 && game.players[2].figures[1].firstRoll" class="green-pawn"
+                (click)="play(2)"></button>
+        </div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==31" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==21" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==11" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==1" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="yellow-home">
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==40" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==27" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==17" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==7" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==37" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="yellow-home">
+            <button *ngIf="game.numberOfPlayers>3 && game.players[3].figures[0].firstRoll" 
+                class="yellow-pawn" (click)="play(1)"></button>
+        </div>
+        <div class="yellow-home">
+            <button *ngIf="game.numberOfPlayers>3 && game.players[3].figures[1].firstRoll" 
+                class="yellow-pawn" (click)="play(2)"></button>
+        </div>
+        <div class="wall"></div>
+
+        <div class="wall"></div>
+        <div class="green-home">
+            <button *ngIf="game.numberOfPlayers>2 && game.players[2].figures[2].firstRoll" class="green-pawn"
+                (click)="play(3)"></button>
+        </div>
+        <div class="green-home">
+            <button *ngIf="game.numberOfPlayers>2 && game.players[2].figures[3].firstRoll" class="green-pawn"
+                (click)="play(4)"></button>
+        </div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="box">
+            <div class="triangle-yellow"></div>
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==30" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==20" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==10" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="!figure.firstRoll && figure.score==0"
+                        class="yellow-pawn" (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==29" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==19" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==9" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==39" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div *ngFor="let figure of game.players[0].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===1)" *ngIf="figure.score==28" class="blue-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngFor="let figure of game.players[1].figures;let i=index">
+                <button [disabled]="!(game.nextPlayingPlayer===2)" *ngIf="figure.score==18" class="red-pawn"
+                    (click)="play(i + 1)"></button>
+            </div>
+            <div *ngIf="game.numberOfPlayers>2">
+                <div *ngFor="let figure of game.players[2].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===3)" *ngIf="figure.score==8" class="green-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+            <div *ngIf="game.numberOfPlayers>3">
+                <div *ngFor="let figure of game.players[3].figures;let i=index">
+                    <button [disabled]="!(game.nextPlayingPlayer===4)" *ngIf="figure.score==38" class="yellow-pawn"
+                        (click)="play(i + 1)"></button>
+                </div>
+            </div>
+        </div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="yellow-home">
+            <button *ngIf="game.numberOfPlayers>3 && game.players[3].figures[2].firstRoll"
+                class="yellow-pawn" (click)="play(3)"></button>
+        </div>
+        <div class="yellow-home">
+            <button *ngIf="game.numberOfPlayers>3 && game.players[3].figures[3].firstRoll" 
+                class="yellow-pawn" (click)="play(4)"></button>
+        </div>
+        <div class="wall"></div>
+
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+        <div class="wall"></div>
+
+    </div>
+
+    <div class="player1">
+        <div class="card text-black bg-primary mb-3" style="size:20mm;">
+
+            <h5 class="card-header" *ngIf="game">{{game.players[0].name}} </h5>
+            <div class="card-body">
+
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div>Score: {{game.players[0].score}}</div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <button [disabled]="!(game.nextRollingPlayer===1) ||
+                         this.playerCanMove() && game.nextPlayingPlayer != 1" 
+                        class="btn bg-primary" (click)="roll()">Roll...</button>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <div class="player2">
+
+        <div class="card text-black bg-danger mb-3" style="size:20mm;">
+
+            <h5 class="card-header" *ngIf="game">{{game.players[1].name}}</h5>
+            <div class="card-body">
+
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div>Score: {{game.players[1].score}}</div>
+                    </li>
+                    <li class="list-group-item">
+                        <button [disabled]="!(game.nextRollingPlayer===2) ||
+                         this.playerCanMove() && game.nextPlayingPlayer != 2" 
+                        class="btn bg-danger" (click)="roll()">Roll...</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="player3" *ngIf="game.numberOfPlayers>2">
+
+        <div class="card text-black bg-success mb-3" style="size:20mm;">
+
+            <h5 class="card-header" *ngIf="game">{{game.players[2].name}}</h5>
+            <div class="card-body">
+
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div>Score: {{game.players[2].score}}</div>
+                    </li>
+                    <li class="list-group-item">
+                        <button [disabled]="!(game.nextRollingPlayer===3) || 
+                        this.playerCanMove() && game.nextPlayingPlayer != 3" 
+                        class="btn bg-success" (click)="roll()">Roll...</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="player4" *ngIf="game.numberOfPlayers===4">
+
+        <div class="card bg-warning mb-3" style="size:20mm;">
+
+            <h5 class="card-header" *ngIf="game">{{game.players[3].name}}</h5>
+            <div class="card-body">
+
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div>Score: {{game.players[3].score}}</div>
+                    </li>
+                    <li class="list-group-item">
+                        <button [disabled]="!(game.nextRollingPlayer===4) || 
+                        this.playerCanMove() && game.nextPlayingPlayer != 4"  
+                        class="btn bg-warning" (click)="roll()">Roll...</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

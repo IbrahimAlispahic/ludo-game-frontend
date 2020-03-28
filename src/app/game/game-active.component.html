@@ -1,0 +1,46 @@
+<div class="card" style="position: relative;">
+    <div *ngIf="game.turnNumber!==0">
+        <img src="./assets/images/kockice/{{game.dice1.value}}.png"
+            style="width: 150px; height: auto; position: absolute; left: 630px; top: 20px;">
+        <img src="./assets/images/kockice/{{game.dice2.value}}.png"
+            style="width: 150px; height: auto; position: absolute; left: 680px; top: 20px;">
+    </div>
+    <div class="parent">
+        <div class="card-header" *ngIf="game">
+            <div *ngFor="let player of game.players">
+                <div *ngIf="player.winner">
+                    {{player.name}} won!!!
+                </div>
+            </div>
+            <div *ngIf="game.active">
+                {{game.turnNumber===0 ? 'Game starting...' : game.players[game.nextPlayingPlayer - 1].currentFigure.firstRoll ?
+                     'Sorry, you need two same numbers...' : 'Roll...'}}
+            </div>
+        </div>
+
+        <div class="card-body" *ngIf="game">
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-3">Next Player:</div>
+                        <div class="col-md-6">{{game.nextRollingPlayer}}</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-3">Dice:</div>
+                    </div>
+                </div>
+            </div>
+
+            <app-player [game]=this.game (rollingClicked)="message($event)">
+            </app-player>
+
+        </div>
+
+        <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}
+        </div>
+    </div>
+</div>
