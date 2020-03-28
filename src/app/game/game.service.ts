@@ -11,7 +11,7 @@ import { Game } from './game';
 export class GameService {
 
     //private gamesUrl = 'http://localhost:8080/api/LUDO';
-    private gamesUrl = 'https://ludo-game-ibro.herokuapp.com/api/LUDO';
+    private gamesUrl = 'https://ludo-game-ibro-spring.herokuapp.com/api/LUDO';
 
     constructor(private http: HttpClient
     ) { }
