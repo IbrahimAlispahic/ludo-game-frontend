@@ -8,6 +8,8 @@ import { WelcomeComponent } from './home/welcome.component';
 import { AppComponent } from './app.component';
 import { GameModule } from './game/game.module';
 
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,7 @@ import { GameModule } from './game/game.module';
   ]),
   GameModule
 ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
