@@ -6,9 +6,11 @@
   <title>LUDOAngular</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!--<meta 
-  http-equiv="Content-Security-Policy" 
-  content="default-src 'self'">-->
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-eval';
+       style-src 'self' 'unsafe-inline';
+        script-src 'self' http://http://ludo-game-ibro.herokuapp.com 'unsafe-inline' 'unsafe-eval';">
+        
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 
